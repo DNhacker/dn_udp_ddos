@@ -1,7 +1,20 @@
 import socket
 import random
 import struct
+import argparse
 
+parser = argparse.ArgumentParser(description='Description of your script')
+    parser.add_argument('--sport', type=int, default=0xFFFF, help='Source port')
+    parser.add_argument('--dport', type=int, default=0xFFFF, help='Destination port')
+    parser.add_argument('--data_len', type=int, default=1458, help='Length of data')
+    parser.add_argument('--data_rand', action='store_true', help='Randomize data')
+    parser.add_argument('--ip_tos', type=int, default=0, help='IP TOS')
+    parser.add_argument('--ip_ident', type=int, default=0xFFFF, help='IP Identification')
+    parser.add_argument('--ip_ttl', type=int, default=0xFF, help='IP TTL')
+    parser.add_argument('--icmp_type', type=int, default=8, help='ICMP type')
+    parser.add_argument('--icmp_code', type=int, default=0, help='ICMP code')
+    parser.add_argument('targets', nargs='+', help='List of targets')
+    return parser.parse_args()
 def rand_next():
     return random.randint(0, 2**32 - 1)
 
